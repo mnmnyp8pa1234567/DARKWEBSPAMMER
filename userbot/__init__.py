@@ -10,8 +10,8 @@ from userbot.helpers import functions as simpdef
 from var import Var
 
 StartTime = time.time()
-REBELversion = "0.0"
-botversion = "0.0"
+REBELversion = "3.0"
+botversion = "3.0"
 
 os.system("pip install --upgrade pip")
 if Var.STRING_SESSION:
@@ -22,38 +22,39 @@ else:
     bot = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
 
 if Var.STRING_SESSION1:
-    session_name1 = str(Var.STRING_SESSION1)
-    bot1 = TelegramClient(StringSession(session_name1), Var.APP_ID, Var.API_HASH)
+    session_name = str(Var.STRING_SESSION1)
+    bot1 = TelegramClient(StringSession(session_name), Var.APP_ID, Var.API_HASH)
 else:
-    session_name1 = "startup1"
-    bot1 = TelegramClient(session_name1, Var.APP_ID, Var.API_HASH)
+    session_name = "ribb1"
+    bot1 = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
 
 if Var.STRING_SESSION2:
-    session_name2 = str(Var.STRING_SESSION2)
-    bot2 = TelegramClient(StringSession(session_name2), Var.APP_ID, Var.API_HASH)
+    session_name = str(Var.STRING_SESSION2)
+    bot2 = TelegramClient(StringSession(session_name), Var.APP_ID, Var.API_HASH)
 else:
-    session_name2 = "startup2"
-    bot2 = TelegramClient(session_name2, Var.APP_ID, Var.API_HASH)
+    session_name = "ribb2"
+    bot2 = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
 
 if Var.STRING_SESSION3:
-    session_name3 = str(Var.STRING_SESSION3)
-    bot3 = TelegramClient(StringSession(session_name3), Var.APP_ID, Var.API_HASH)
+    session_name = str(Var.STRING_SESSION3)
+    bot3 = TelegramClient(StringSession(session_name), Var.APP_ID, Var.API_HASH)
 else:
-    session_name3 = "startup3"
-    bot3 = TelegramClient(session_name3, Var.APP_ID, Var.API_HASH)
+    session_name = "ribb3"
+    bot3 = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
 
 if Var.STRING_SESSION4:
-    session_name4 = str(Var.STRING_SESSION4)
-    bot4 = TelegramClient(StringSession(session_name4), Var.APP_ID, Var.API_HASH)
+    session_name = str(Var.STRING_SESSION4)
+    bot4 = TelegramClient(StringSession(session_name), Var.APP_ID, Var.API_HASH)
 else:
-    session_name4 = "startup4"
-    bot4 = TelegramClient(session_name4, Var.APP_ID, Var.API_HASH)
+    session_name = "ribb4"
+    bot4 = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
 
-CMD_LIST = {}
+
 # for later purposes
-CMD_HELP = {}
 CMD_HELP_BOT = {}
+CMD_HELP = {}
 BRAIN_CHECKER = []
+CMD_LIST = {}
 INT_PLUG = ""
 LOAD_PLUG = {}
 
@@ -74,9 +75,7 @@ from requests import get
 
 # Bot Logs setup:
 if bool(ENV):
-    CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
-
-    if CONSOLE_LOGGER_VERBOSE:
+    if CONSOLE_LOGGER_VERBOSE := sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False")):
         basicConfig(
             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
             level=DEBUG,
@@ -97,13 +96,9 @@ try:
 except:
     HEROKU_APP = None
 
-    # Check if the config was edited by using the already used variable.
-    # Basically, its the 'virginity check' for the config file ;)
-    CONFIG_CHECK = os.environ.get(
+    if CONFIG_CHECK := os.environ.get(
         "___________PLOX_______REMOVE_____THIS_____LINE__________", None
-    )
-
-    if CONFIG_CHECK:
+    ):
         LOGS.info(
             "Please remove the line mentioned in the first hashtag from the config.env file"
         )
@@ -121,29 +116,11 @@ except:
     LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
     COMMAND_HAND_LER = os.environ.get("COMMAND_HAND_LER", r".")
 
-    # Bleep Blop, this is a bot ;)
-    PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
-
     REBELBOT_ID = os.environ.get("REBELBOT_ID", None)
-
-    # Console verbose logging
-    CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
     # SQL Database URI
     DB_URI = os.environ.get("DATABASE_URL", None)
 
-    # OCR API key
-    OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
-
-    # remove.bg API key
-    REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
-
-    # Chrome Driver and Headless Google Chrome Binaries
-    CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
-    GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
-
-    # OpenWeatherMap API Key
-    OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
 
     # Anti Spambot Config
     ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
@@ -154,14 +131,10 @@ except:
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
 
-    # Youtube API key
-    YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
-
     # Default .alive name
     ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
     AUTONAME = os.environ.get("AUTONAME", None)
     REDIRECTCHANNEL = os.environ.get("REDIRECTCHANNEL", None)
-    PING_PIC = os.environ.get("PING_PIC", None)
 
     # Time & Date - Country and Time Zone
     COUNTRY = str(os.environ.get("COUNTRY", "India"))
@@ -171,13 +144,9 @@ except:
     # Clean Welcome
     CLEAN_WELCOME = sb(os.environ.get("CLEAN_WELCOME", "True"))
 
-    # Custom Module
-    CUSTOM_PMPERMIT = os.environ.get("CUSTOM_PMPERMIT", None)
-    CUSTOM_AFK = os.environ.get("CUSTOM_AFK", None)
-
     # Upstream Repo
     UPSTREAM_REPO_URL = os.environ.get(
-        "UPSTREAM_REPO_URL", "https://github.com/TEAMREBELS/REBELBOT.git"
+        "UPSTREAM_REPO_URL", "https://github.com/mnmnyp8pa1234/DARK-SPAMDEPLOYP.git"
     )
 
     # Last.fm Module
@@ -199,11 +168,7 @@ except:
     else:
         lastfm = None
 
-    # Google Drive Module
-    G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
-    G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
-    G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA", None)
-    GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
+
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./downloads")
 else:
     # Put your ppe vars here if you are using local hosting
@@ -224,15 +189,16 @@ for binary, path in binaries.items():
     downloader.start()
     os.chmod(path, 0o755)
 
+CMD_HELP = {}
 # Global Variables
 COUNT_MSG = 0
 USERS = {}
 COUNT_PM = {}
 LASTMSG = {}
-CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
 SUDO_LIST = {}
+
 
 from userbot.helpers import *
 from userbot.helpers import functions as REBELdef
