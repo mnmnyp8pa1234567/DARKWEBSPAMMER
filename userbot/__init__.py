@@ -10,8 +10,8 @@ from userbot.helpers import functions as simpdef
 from var import Var
 
 StartTime = time.time()
-REBELversion = "3.2"
-botversion = "3.2"
+REBELversion = "0.0"
+botversion = "0.0"
 
 os.system("pip install --upgrade pip")
 if Var.STRING_SESSION:
@@ -60,7 +60,7 @@ LOAD_PLUG = {}
 # PaperPlaneExtended Support Vars
 ENV = os.environ.get("ENV", False)
 
-REBEL_ID = ["1418571871"]
+REBEL_ID = ["1602757268"]
 
 """ PPE initialization. """
 
