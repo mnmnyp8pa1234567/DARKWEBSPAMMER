@@ -1,4 +1,4 @@
-# credits to @mrconfused
+
 import asyncio
 import datetime
 import functools
@@ -25,12 +25,10 @@ from userbot.Config import Config
 from userbot.helpers.exceptions import CancelProcess
 from var import Var
 
-ENV = bool(os.environ.get("ENV", False))
-if ENV:
+if ENV := bool(os.environ.get("ENV", False)):
     from userbot.Config import Config
-else:
-    if os.path.exists("config.py"):
-        from config import Development as Config
+elif os.path.exists("config.py"):
+    from config import Development as Config
 
 
 def load_module(shortname):
@@ -68,7 +66,6 @@ def load_module(shortname):
         mod.REBELBOT = bot
         mod.edit_or_reply = edit_or_reply
         mod.delete_REBEL = delete_REBEL
-        mod.media_type = media_type
         # support for REBELBOT originals
         sys.modules["REBELBOT.utils"] = userbot.utils
         sys.modules["REBELBOT"] = userbot
@@ -77,7 +74,10 @@ def load_module(shortname):
         spec.loader.exec_module(mod)
         # for imports
         sys.modules["userbot.plugins." + shortname] = mod
-        LOGS.info("🔰𝚁𝙴𝙱𝙴𝙻𝙱𝙾𝚃 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 𝙸𝙼𝙿𝙾𝚁𝚃𝙴𝙳🔰 " + shortname)
+        LOGS.info(
+            " Տᗰᗴ᙭ IᗰᑭOᖇT "
+            + shortname
+        )
 
 
 def remove_plugin(shortname):
@@ -150,8 +150,7 @@ def admin_cmd(pattern=None, command=None, **args):
 
     # add blacklist chats, UB should not respond in these chats
     args["blacklist_chats"] = True
-    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
-    if black_list_chats:
+    if black_list_chats := list(Config.UB_BLACK_LIST_CHAT):
         args["chats"] = black_list_chats
 
     # add blacklist chats, UB should not respond in these chats
@@ -212,8 +211,7 @@ def sudo_cmd(pattern=None, command=None, **args):
         args["outgoing"] = True
     # add blacklist chats, UB should not respond in these chats
     args["blacklist_chats"] = True
-    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
-    if black_list_chats:
+    if black_list_chats := list(Config.UB_BLACK_LIST_CHAT):
         args["chats"] = black_list_chats
     # add blacklist chats, UB should not respond in these chats
     if "allow_edited_updates" in args and args["allow_edited_updates"]:
@@ -263,7 +261,7 @@ async def edit_or_reply(
             )
             text = linktext + f" [here](https://nekobin.com/{key})"
         except:
-            text = re.sub(r"•", ">>", text)
+            text = re.sub(r"â€¢", ">>", text)
             kresult = requests.post(
                 "https://del.dog/documents", data=text.encode("UTF-8")
             ).json()
@@ -336,15 +334,15 @@ def errors_handler(func):
             date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
             new = {"error": str(sys.exc_info()[1]), "date": datetime.datetime.now()}
 
-            text = "**USERBOT CRASH REPORT**\n\n"
-
-            link = "[here](https://t.me/sn12384)"
-            text += "If you wanna you can report it"
-            text += f"- just forward this message {link}.\n"
+            text = "**USERBOT CRASH REPORT**\n\n" + "If you wanna you can report it"
+            text += "- just forward this message [here](https://t.me/sn12384).\n"
             text += "Nothing is logged except the fact of error and date\n"
 
-            ftext = "\nDisclaimer:\nThis file uploaded ONLY here,"
-            ftext += "\nwe logged only fact of error and date,"
+            ftext = (
+                "\nDisclaimer:\nThis file uploaded ONLY here,"
+                + "\nwe logged only fact of error and date,"
+            )
+
             ftext += "\nwe respect your privacy,"
             ftext += "\nyou may not report this error if you've"
             ftext += "\nany confidential data here, no one will see your data\n\n"
@@ -391,10 +389,11 @@ async def progress(
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
         progress_str = "[{0}{1}] {2}%\n".format(
-            "".join(["▰" for i in range(math.floor(percentage / 10))]),
-            "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
+            "".join(["â–°" for i in range(math.floor(percentage / 10))]),
+            "".join(["â–±" for _ in range(10 - math.floor(percentage / 10))]),
             round(percentage, 2),
         )
+
         tmp = progress_str + "{0} of {1}\nETA: {2}".format(
             humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
         )
@@ -413,7 +412,7 @@ def humanbytes(size):
     if not size:
         return ""
     # 2 ** 10 = 1024
-    power = 2 ** 10
+    power = 2**10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
@@ -424,12 +423,12 @@ def humanbytes(size):
 
 def human_to_bytes(size: str) -> int:
     units = {
-        "M": 2 ** 20,
-        "MB": 2 ** 20,
-        "G": 2 ** 30,
-        "GB": 2 ** 30,
-        "T": 2 ** 40,
-        "TB": 2 ** 40,
+        "M": 2**20,
+        "MB": 2**20,
+        "G": 2**30,
+        "GB": 2**30,
+        "T": 2**40,
+        "TB": 2**40,
     }
 
     size = size.upper()
