@@ -20,10 +20,9 @@ from telethon import events, functions, types
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 
-from userbot import CMD_LIST, LOAD_PLUG, LOGS, SUDO_LIST, bot
+from userbot import CMD_LIST, LOAD_PLUG, LOGS, SUDO_LIST, bot, bot1, bot2, bot3, bot4
 from userbot.Config import Config
 from userbot.helpers.exceptions import CancelProcess
-from userbot.helpers.tools import media_type
 from var import Var
 
 ENV = bool(os.environ.get("ENV", False))
@@ -54,6 +53,10 @@ def load_module(shortname):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         mod.bot = bot
+        mod.bot1 = bot1
+        mod.bot2 = bot2
+        mod.bot3 = bot3
+        mod.bot4 = bot4
         mod.tgbot = bot.tgbot
         mod.Var = Var
         mod.command = command
@@ -642,35 +645,3 @@ async def unsavegif(event, h1m4n5hu0p):
         )
     except Exception as e:
         LOGS.info(str(e))
-
-
-# Assistant
-def start_assistant(shortname):
-    if shortname.startswith("__"):
-        pass
-    elif shortname.endswith("_"):
-        import importlib
-        import sys
-        from pathlib import Path
-
-        path = Path(f"userbot/assistant/{shortname}.py")
-        name = "userbot.assistant.{}".format(shortname)
-        spec = importlib.util.spec_from_file_location(name, path)
-        mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)
-        print("Starting Your Assistant Bot.")
-        print("Assistant Sucessfully imported " + shortname)
-    else:
-        import importlib
-        import sys
-        from pathlib import Path
-
-        path = Path(f"userbot/assistant/{shortname}.py")
-        name = "userbot.assistant.{}".format(shortname)
-        spec = importlib.util.spec_from_file_location(name, path)
-        mod = importlib.util.module_from_spec(spec)
-        mod.tgbot = bot.tgbot
-        spec.loader.exec_module(mod)
-        sys.modules["userbot.assistant" + shortname] = mod
-        print("Assistant Has imported " + shortname)
-
