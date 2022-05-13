@@ -21,6 +21,33 @@ else:
     session_name = "startup"
     bot = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
 
+if Var.STRING_SESSION1:
+    session_name1 = str(Var.STRING_SESSION1)
+    bot1 = TelegramClient(StringSession(session_name1), Var.APP_ID, Var.API_HASH)
+else:
+    session_name1 = "startup1"
+    bot1 = TelegramClient(session_name1, Var.APP_ID, Var.API_HASH)
+
+if Var.STRING_SESSION2:
+    session_name2 = str(Var.STRING_SESSION2)
+    bot2 = TelegramClient(StringSession(session_name2), Var.APP_ID, Var.API_HASH)
+else:
+    session_name2 = "startup2"
+    bot2 = TelegramClient(session_name2, Var.APP_ID, Var.API_HASH)
+
+if Var.STRING_SESSION3:
+    session_name3 = str(Var.STRING_SESSION3)
+    bot3 = TelegramClient(StringSession(session_name3), Var.APP_ID, Var.API_HASH)
+else:
+    session_name3 = "startup3"
+    bot3 = TelegramClient(session_name3, Var.APP_ID, Var.API_HASH)
+
+if Var.STRING_SESSION4:
+    session_name4 = str(Var.STRING_SESSION4)
+    bot4 = TelegramClient(StringSession(session_name4), Var.APP_ID, Var.API_HASH)
+else:
+    session_name4 = "startup4"
+    bot4 = TelegramClient(session_name4, Var.APP_ID, Var.API_HASH)
 
 CMD_LIST = {}
 # for later purposes
