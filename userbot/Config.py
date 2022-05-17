@@ -139,7 +139,7 @@ if ENV:
         G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", False)
         G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", False)
         GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", False)
-        AUTH_TOKEN_DATA = os.environ.get("AUTH_TOKEN_DATA", False)
+        AUTH_TOKEN_DATA = os.environ.get("AUTH_TOKEN_DATA", None)
         if AUTH_TOKEN_DATA != None:
             os.makedirs(TMP_DOWNLOAD_DIRECTORY)
             with open(TMP_DOWNLOAD_DIRECTORY + "auth_token.txt", "w") as t_file:
